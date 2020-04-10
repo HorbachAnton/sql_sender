@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.horbach.iba.sql_sender.entity.Ticket" table="ticket" catalog="sql_sender">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="user" class="org.horbach.iba.sql_sender.entity.User" fetch="join">
+            <column name="User_id" />
+        </many-to-one>
+        <many-to-one name="event" class="org.horbach.iba.sql_sender.entity.Event" fetch="join">
+            <column name="Event_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

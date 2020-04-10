@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.horbach.iba.sql_sender.entity.LogRecord" table="logrecord" catalog="sql_sender">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <one-to-one name="request" class="org.horbach.iba.sql_sender.entity.Request" fetch="join">
+        </one-to-one>
+    </class>
+</hibernate-mapping>
