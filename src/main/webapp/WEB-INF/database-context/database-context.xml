@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<bean
+		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+		<property name="locations"
+			value="classpath:properties/hibernate.properties" />
+	</bean>
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName"
+			value="${dataSource.driverClassName}" />
+		<property name="url" value="${dataSource.url}" />
+		<property name="username" value="${dataSource.username}" />
+		<property name="password" value="${dataSource.password}" />
+	</bean>
+
+	<!-- Session Factory Declaration -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<!-- SQL Dialect -->
+				<prop key="hibernate.dialect">${sessionFactory.hibernate.dialect}</prop>
+
+				<!-- Your required Database Name -->
+				<prop key="hibernate.default_schema">${sessionFactory.hibernate.default_schema}</prop>
+
+				<prop key="hibernate.id.new_generator_mappings">${sessionFactory.hibernate.id.new_generator_mappings}
+				</prop>
+
+				<prop key="hibernate.connection.charSet">${sessionFactory.hibernate.connection.charSet}</prop>
+				<prop key="hibernate.show_sql">${sessionFactory.hibernate.show_sql}</prop>
+				<prop key="hibernate.enable_lazy_load_no_trans">${sessionFactory.hibernate.enable_lazy_load_no_trans}
+				</prop>
+				<prop key="format_sql">${sessionFactory.format_sql}</prop>
+				<prop key="use_sql_comments">${sessionFactory.use_sql_comments}</prop>
+			</props>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:orm/*.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="bcrypt"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="12" />
+	</bean>
+
+</beans>

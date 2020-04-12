@@ -1,8 +1,10 @@
 package org.horbach.iba.sql_sender.entity.enumeration;
 
+import java.util.Arrays;
+
 public enum UserRoles {
 
-	ADMIN(1), USER(2);
+	ADMIN(1), USER(2), UNDEFINED(3);
 
 	private final int id;
 
@@ -15,7 +17,8 @@ public enum UserRoles {
 	}
 
 	public static UserRoles getRoleById(int id) {
-		return id == 1 ? UserRoles.ADMIN : UserRoles.USER;
+		return Arrays.stream(UserRoles.values()).filter(role -> role.getId() == id).findFirst()
+				.orElse(UserRoles.UNDEFINED);
 	}
 
 }

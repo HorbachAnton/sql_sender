@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `sql_sender`.`User` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(70) NOT NULL,
+  `enabled` CHAR(1) NOT NULL,
   `Role_id` INT,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idUser_UNIQUE` (`id` ASC) VISIBLE,
@@ -149,7 +150,7 @@ INSERT INTO `sql_sender`.`role` (`id`, `title`) VALUES ('2', 'USER');
 -- -----------------------------------------------------
 -- Filling the table(`sql_sender`.`User`) with test data
 -- -----------------------------------------------------
-INSERT INTO `sql_sender`.`user` (`id`, `username`, `password`, `Role_id`) VALUES ('1', 'admin', 'admin', '1');
+INSERT INTO `sql_sender`.`user` (`id`, `username`, `password`, `enabled`, `Role_id`) VALUES ('1', 'admin', 'admin', '1', '1');
 
 -- -----------------------------------------------------
 -- Filling the table(`sql_sender`.`Location`) with test data
