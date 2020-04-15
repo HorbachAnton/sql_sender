@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="userDetailsService"
+		class="org.horbach.iba.sql_sender.service.impl.UserDetailsServiceImpl">
+		<constructor-arg name="userDao" ref="userDAO" />
+	</bean>
+
+	<bean id="eventService"
+		class="org.horbach.iba.sql_sender.service.impl.EventServiceImpl">
+		<constructor-arg name="eventDAO" ref="eventDAO" />
+	</bean>
+
+	<bean id="locationService"
+		class="org.horbach.iba.sql_sender.service.impl.LocationServiceImpl">
+		<constructor-arg name="locationDAO" ref="locationDAO" />
+	</bean>
+
+	<bean id="logRecordService"
+		class="org.horbach.iba.sql_sender.service.impl.LogRecordServiceImpl">
+		<constructor-arg name="logRecordDAO"
+			ref="logRecordDAO" />
+	</bean>
+
+	<bean id="requestService"
+		class="org.horbach.iba.sql_sender.service.impl.RequestServiceImpl">
+		<constructor-arg name="requestDAO" ref="requestDAO" />
+	</bean>
+
+
+	<bean id="requestResultService"
+		class="org.horbach.iba.sql_sender.service.impl.RequestResultServiceImpl">
+		<constructor-arg name="requestResultDAO"
+			ref="requestResultDAO" />
+	</bean>
+
+	<bean id="ticketService"
+		class="org.horbach.iba.sql_sender.service.impl.TicketServiceImpl">
+		<constructor-arg name="ticketDAO" ref="ticketDAO" />
+	</bean>
+
+	<bean id="userService"
+		class="org.horbach.iba.sql_sender.service.impl.UserServiceImpl">
+		<constructor-arg name="userDAO" ref="userDAO" />
+	</bean>
+
+</beans>

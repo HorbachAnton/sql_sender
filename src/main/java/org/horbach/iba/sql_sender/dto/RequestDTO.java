@@ -1,0 +1,96 @@
+package org.horbach.iba.sql_sender.dto;
+
+import java.util.Objects;
+
+import org.horbach.iba.sql_sender.entity.RequestResult;
+import org.horbach.iba.sql_sender.entity.User;
+
+public class RequestDTO {
+
+	private int id;
+	private String text;
+	private String executeDate;
+	private User user;
+	private RequestResult result;
+
+	public RequestDTO() {
+
+	}
+
+	public RequestDTO(int id, String text, String executeDate, User user, RequestResult result) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.executeDate = executeDate;
+		this.user = user;
+		this.result = result;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getExecuteDate() {
+		return executeDate;
+	}
+
+	public void setExecuteDate(String executeDate) {
+		this.executeDate = executeDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public RequestResult getResult() {
+		return result;
+	}
+
+	public void setResult(RequestResult result) {
+		this.result = result;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(executeDate, id, result, text, user);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		RequestDTO other = (RequestDTO) obj;
+		return Objects.equals(executeDate, other.executeDate) && id == other.id && Objects.equals(result, other.result)
+				&& Objects.equals(text, other.text) && Objects.equals(user, other.user);
+	}
+
+	@Override
+	public String toString() {
+		return "RequestDTO [id=" + id + ", text=" + text + ", executeDate=" + executeDate + ", user=" + user
+				+ ", result=" + result + "]";
+	}
+
+}

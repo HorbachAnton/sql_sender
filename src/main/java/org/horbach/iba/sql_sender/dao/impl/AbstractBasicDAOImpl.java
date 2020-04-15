@@ -21,4 +21,24 @@ public abstract class AbstractBasicDAOImpl implements BasicDAO {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
+	public void save(Object object) {
+		sessionFactory.getCurrentSession().save(object);
+	}
+
+	@Override
+	public void update(Object object) {
+		sessionFactory.getCurrentSession().update(object);
+	}
+
+	@Override
+	public void delete(Object object) {
+		sessionFactory.getCurrentSession().delete(object);
+	}
+
+	@Override
+	public <T> Object getById(Class<T> expectedClass, int objectId) {
+		return sessionFactory.getCurrentSession().get(expectedClass, objectId);
+	}
+
 }

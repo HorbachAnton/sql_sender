@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	<bean id="eventConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.EventConverterImpl" />
+
+	<bean id="locationConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.LocationConverterImpl" />
+
+	<bean id="logRecordConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.LogRecordConverterImpl" />
+
+	<bean id="requestConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.RequestConverterImpl" />
+
+	<bean id="requestResultConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.RequestResultConverterImpl" />
+
+	<bean id="ticketConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.TicketConverterImpl" />
+
+	<bean id="userConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.UserConverterImpl" />
+
+</beans>

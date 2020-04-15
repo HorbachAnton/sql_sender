@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.horbach.iba.sql_sender.entity.LogRecord" table="logrecord" catalog="sql_sender">
+    <class name="org.horbach.iba.sql_sender.entity.LogRecord" table="log_record" catalog="sql_sender">
         <id name="id" type="int">
             <column name="id" />
             <generator class="increment" />

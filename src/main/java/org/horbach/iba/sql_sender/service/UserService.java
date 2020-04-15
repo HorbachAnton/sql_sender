@@ -1,10 +1,10 @@
-package org.horbach.iba.sql_sender.dao;
+package org.horbach.iba.sql_sender.service;
 
 import java.util.List;
 
 import org.horbach.iba.sql_sender.entity.User;
 
-public interface UserDAO {
+public interface UserService {
 
 	User getUser(String username);
 	
@@ -12,7 +12,7 @@ public interface UserDAO {
 
 	List<User> getUsers();
 
-	void saveUser(User user);
+	void registerUser(User user);
 
 	void updateUser(User user);
 
