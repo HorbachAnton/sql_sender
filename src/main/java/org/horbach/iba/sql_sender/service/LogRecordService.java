@@ -8,7 +8,7 @@ public interface LogRecordService {
 
 	LogRecord getLogRecord(int id);
 
-	List<LogRecord> getRecords();
+	List<LogRecord> getLogRecords();
 
 	void saveLogRecord(LogRecord logRecord);
 

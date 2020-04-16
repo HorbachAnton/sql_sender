@@ -19,7 +19,7 @@ public class RequestResultConverterImpl implements RequestResultConverter {
 		RequestResult requestResult = new RequestResult();
 		requestResult.setId(requestResultDTO.getId());
 		requestResult.setMessage(requestResultDTO.getMessage());
-		return null;
+		return requestResult;
 	}
 
 }

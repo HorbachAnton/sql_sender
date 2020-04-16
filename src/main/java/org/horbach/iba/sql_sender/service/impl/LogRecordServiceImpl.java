@@ -26,7 +26,7 @@ public class LogRecordServiceImpl implements LogRecordService {
 	}
 
 	@Override
-	public List<LogRecord> getRecords() {
+	public List<LogRecord> getLogRecords() {
 		return logRecordDAO.getLogRecords();
 	}
 

@@ -1,12 +1,13 @@
 package org.horbach.iba.sql_sender.entity;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Request {
 
 	private int id;
 	private String text;
-	private String executeDate;
+	private LocalDateTime executeDate;
 	private User user;
 	private RequestResult result;
 
@@ -14,7 +15,7 @@ public class Request {
 
 	}
 
-	public Request(int id, String text, String executeDate, User user, RequestResult result) {
+	public Request(int id, String text, LocalDateTime executeDate, User user, RequestResult result) {
 		super();
 		this.id = id;
 		this.text = text;
@@ -39,11 +40,11 @@ public class Request {
 		this.text = text;
 	}
 
-	public String getExecuteDate() {
+	public LocalDateTime getExecuteDate() {
 		return executeDate;
 	}
 
-	public void setExecuteDate(String executeDate) {
+	public void setExecuteDate(LocalDateTime executeDate) {
 		this.executeDate = executeDate;
 	}
 

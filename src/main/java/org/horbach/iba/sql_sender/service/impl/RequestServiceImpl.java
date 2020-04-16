@@ -27,7 +27,7 @@ public class RequestServiceImpl implements RequestService {
 
 	@Override
 	public List<Request> getRequests() {
-		return requestDAO.getRequest();
+		return requestDAO.getRequests();
 	}
 
 	@Override

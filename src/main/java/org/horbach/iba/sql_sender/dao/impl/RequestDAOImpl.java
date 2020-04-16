@@ -21,7 +21,7 @@ public class RequestDAOImpl extends AbstractBasicDAOImpl implements RequestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Request> getRequest() {
+	public List<Request> getRequests() {
 		return getCurrentSession().createSQLQuery(GET_EVENTS_QUERY).addEntity(Request.class).list();
 	}
 

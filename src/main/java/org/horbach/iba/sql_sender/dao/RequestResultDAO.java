@@ -8,7 +8,7 @@ public interface RequestResultDAO {
 
 	RequestResult getRequestResult(int id);
 
-	List<RequestResult> getRequestResult();
+	List<RequestResult> getRequestResults();
 
 	void saveRequestResult(RequestResult requestResult);
 

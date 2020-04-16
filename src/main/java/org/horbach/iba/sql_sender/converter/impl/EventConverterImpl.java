@@ -27,7 +27,7 @@ public class EventConverterImpl implements EventConverter {
 		event.setDate(eventDTO.getDate());
 		event.setLocation(eventDTO.getLocation());
 		event.setPrice(eventDTO.getPrice());
-		return null;
+		return event;
 	}
 
 }

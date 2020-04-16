@@ -5,13 +5,13 @@ import java.util.Objects;
 public class LocationDTO {
 
 	private int id;
-	private int title;
+	private String title;
 
 	public LocationDTO() {
 
 	}
 
-	public LocationDTO(int id, int title) {
+	public LocationDTO(int id, String title) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -25,11 +25,11 @@ public class LocationDTO {
 		this.id = id;
 	}
 
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(int title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
@@ -50,7 +50,7 @@ public class LocationDTO {
 			return false;
 		}
 		LocationDTO other = (LocationDTO) obj;
-		return id == other.id && title == other.title;
+		return id == other.id && Objects.equals(title, other.title);
 	}
 
 	@Override

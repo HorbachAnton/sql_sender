@@ -27,7 +27,7 @@ public class RequestResultServiceImpl implements RequestResultService {
 
 	@Override
 	public List<RequestResult> getRequestResults() {
-		return requestResultDAO.getRequestResult();
+		return requestResultDAO.getRequestResults();
 	}
 
 	@Override

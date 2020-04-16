@@ -21,7 +21,7 @@ public class RequestResultDAOImpl extends AbstractBasicDAOImpl implements Reques
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RequestResult> getRequestResult() {
+	public List<RequestResult> getRequestResults() {
 		return getCurrentSession().createSQLQuery(GET_REQUEST_RESULT_QUERY).addEntity(RequestResult.class).list();
 	}
 

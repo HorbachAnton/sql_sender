@@ -8,7 +8,7 @@ public interface RequestDAO {
 
 	Request getRequest(int id);
 
-	List<Request> getRequest();
+	List<Request> getRequests();
 
 	void saveRequest(Request request);
 
