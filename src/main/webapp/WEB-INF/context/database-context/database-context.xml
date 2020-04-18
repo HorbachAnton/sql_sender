@@ -7,6 +7,19 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
+	<bean id="flywayConfig"
+		class="org.flywaydb.core.api.configuration.ClassicConfiguration">
+		<property name="baselineOnMigrate" value="true" />
+		<property name="locations" value="classpath:migrations/" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="schemas" value="sql_sender" />
+	</bean>
+
+	<bean id="flyway" class="org.flywaydb.core.Flyway"
+		init-method="migrate">
+		<constructor-arg ref="flywayConfig" />
+	</bean>
+
 	<bean
 		class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations"
@@ -24,7 +37,8 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<!-- Session Factory Declaration -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		depends-on="flyway">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
 			<props>
@@ -37,7 +51,8 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 				<prop key="hibernate.id.new_generator_mappings">${sessionFactory.hibernate.id.new_generator_mappings}
 				</prop>
 
-				<prop key="hibernate.connection.charSet">${sessionFactory.hibernate.connection.charSet}</prop>
+				<prop key="hibernate.connection.charSet">${sessionFactory.hibernate.connection.charSet}
+				</prop>
 				<prop key="hibernate.show_sql">${sessionFactory.hibernate.show_sql}</prop>
 				<prop key="hibernate.enable_lazy_load_no_trans">${sessionFactory.hibernate.enable_lazy_load_no_trans}
 				</prop>
