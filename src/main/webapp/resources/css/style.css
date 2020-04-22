@@ -1,0 +1,33 @@
+header {
+  height: 10%;
+}
+
+header .left-block {
+  width: 33%;
+}
+
+header .center-block {
+  width: 34%;
+}
+
+header .right-block {
+  width: 33%;
+}
+
+header form {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+header button {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+header div input {
+  margin-top: 15px;
+}
+
+.central-container {
+  height: 87%;
+}
