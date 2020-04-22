@@ -1,20 +1,23 @@
 package org.horbach.iba.sql_sender.dto;
 
+import java.util.List;
 import java.util.Objects;
 
 public class RequestResultDTO {
 
 	private int id;
 	private String message;
+	private List<?> requestedData;
 
 	public RequestResultDTO() {
 
 	}
 
-	public RequestResultDTO(int id, String message) {
+	public RequestResultDTO(int id, String message, List<?> requestedData) {
 		super();
 		this.id = id;
 		this.message = message;
+		this.requestedData = requestedData;
 	}
 
 	public int getId() {
@@ -33,9 +36,17 @@ public class RequestResultDTO {
 		this.message = message;
 	}
 
+	public List<?> getRequestedData() {
+		return requestedData;
+	}
+
+	public void setRequestedData(List<?> requestedData) {
+		this.requestedData = requestedData;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, message);
+		return Objects.hash(id, message, requestedData);
 	}
 
 	@Override
@@ -50,12 +61,13 @@ public class RequestResultDTO {
 			return false;
 		}
 		RequestResultDTO other = (RequestResultDTO) obj;
-		return id == other.id && Objects.equals(message, other.message);
+		return id == other.id && Objects.equals(message, other.message)
+				&& Objects.equals(requestedData, other.requestedData);
 	}
 
 	@Override
 	public String toString() {
-		return "RequestResultDTO [id=" + id + ", message=" + message + "]";
+		return "RequestResultDTO [id=" + id + ", message=" + message + ", requestedData=" + requestedData + "]";
 	}
 
 }

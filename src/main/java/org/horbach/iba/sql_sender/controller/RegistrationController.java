@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegistrationController {
-	
-	private static final String GET_REGISTRATION_PAGE_REQUEST = "/registration";
+
+	private static final String GET_REGISTRATION_PAGE_REQUEST = "/registration/";
 	private static final String REGISTER_REQUEST = "/register";
-	
+
 	private static final String USER_DTO_MODEL_ATTRIBUTE_NAME = "userDTO";
 	private static final String AUTHORIZATION_PAGE_NAME = "authorization";
-	
+
 	private static final String REGISTRATION_PAGE_NAME = "registration";
 
 	@Autowired
@@ -27,13 +27,13 @@ public class RegistrationController {
 
 	@Autowired
 	private Validator userDTOValidator;
-	
+
 	@GetMapping(value = GET_REGISTRATION_PAGE_REQUEST)
 	public String getPage(Model model) {
 		model.addAttribute(USER_DTO_MODEL_ATTRIBUTE_NAME, new UserDTO());
 		return REGISTRATION_PAGE_NAME;
 	}
-	
+
 	@PostMapping(value = REGISTER_REQUEST)
 	public String register(@ModelAttribute(USER_DTO_MODEL_ATTRIBUTE_NAME) UserDTO userDTO, BindingResult result) {
 		userDTOValidator.validate(userDTO, result);

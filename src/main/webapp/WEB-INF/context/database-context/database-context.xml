@@ -62,7 +62,7 @@ http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 		</property>
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:orm/*.hbm.xml</value>
+				<value>classpath:hbm/*.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

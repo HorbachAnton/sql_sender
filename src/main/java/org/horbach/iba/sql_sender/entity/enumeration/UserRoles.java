@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public enum UserRoles {
 
-	ADMIN(1), USER(2), UNDEFINED(3);
+	UNDEFINED(0), USER(1), ADMIN(2);
 
 	private final int id;
 

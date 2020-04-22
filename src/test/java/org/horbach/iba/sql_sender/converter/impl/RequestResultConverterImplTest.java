@@ -31,11 +31,11 @@ class RequestResultConverterImplTest {
 	}
 
 	static void setUpRequestResult() {
-		requestResult = new RequestResult(1, "Success");
+		requestResult = new RequestResult(1, "Success", null);
 	}
 
 	static void setUpRequestResultDTO() {
-		requestResultDTO = new RequestResultDTO(1, "Success");
+		requestResultDTO = new RequestResultDTO(1, "Success", null);
 	}
 
 	@Test

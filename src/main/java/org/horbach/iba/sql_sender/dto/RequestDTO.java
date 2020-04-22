@@ -5,11 +5,13 @@ import java.util.Objects;
 
 import org.horbach.iba.sql_sender.entity.RequestResult;
 import org.horbach.iba.sql_sender.entity.User;
+import org.horbach.iba.sql_sender.entity.enumeration.RequestTypes;
 
 public class RequestDTO {
 
 	private int id;
 	private String text;
+	private RequestTypes requestType;
 	private LocalDateTime executeDate;
 	private User user;
 	private RequestResult result;
@@ -18,10 +20,12 @@ public class RequestDTO {
 
 	}
 
-	public RequestDTO(int id, String text, LocalDateTime executeDate, User user, RequestResult result) {
+	public RequestDTO(int id, String text, RequestTypes requestType, LocalDateTime executeDate, User user,
+			RequestResult result) {
 		super();
 		this.id = id;
 		this.text = text;
+		this.requestType = requestType;
 		this.executeDate = executeDate;
 		this.user = user;
 		this.result = result;
@@ -41,6 +45,14 @@ public class RequestDTO {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public RequestTypes getRequestType() {
+		return requestType;
+	}
+
+	public void setRequestType(RequestTypes requestType) {
+		this.requestType = requestType;
 	}
 
 	public LocalDateTime getExecuteDate() {
@@ -69,7 +81,7 @@ public class RequestDTO {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(executeDate, id, result, text, user);
+		return Objects.hash(executeDate, id, requestType, result, text, user);
 	}
 
 	@Override
@@ -84,14 +96,15 @@ public class RequestDTO {
 			return false;
 		}
 		RequestDTO other = (RequestDTO) obj;
-		return Objects.equals(executeDate, other.executeDate) && id == other.id && Objects.equals(result, other.result)
-				&& Objects.equals(text, other.text) && Objects.equals(user, other.user);
+		return Objects.equals(executeDate, other.executeDate) && id == other.id && requestType == other.requestType
+				&& Objects.equals(result, other.result) && Objects.equals(text, other.text)
+				&& Objects.equals(user, other.user);
 	}
 
 	@Override
 	public String toString() {
-		return "RequestDTO [id=" + id + ", text=" + text + ", executeDate=" + executeDate + ", user=" + user
-				+ ", result=" + result + "]";
+		return "RequestDTO [id=" + id + ", text=" + text + ", requestType=" + requestType + ", executeDate="
+				+ executeDate + ", user=" + user + ", result=" + result + "]";
 	}
 
 }

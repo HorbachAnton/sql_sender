@@ -17,6 +17,7 @@ import org.horbach.iba.sql_sender.dao.impl.RequestDAOImpl;
 import org.horbach.iba.sql_sender.entity.Request;
 import org.horbach.iba.sql_sender.entity.RequestResult;
 import org.horbach.iba.sql_sender.entity.User;
+import org.horbach.iba.sql_sender.entity.enumeration.RequestTypes;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,8 +45,8 @@ class RequestServiceImplTest {
 	}
 
 	static void setUpExpectedRequest() {
-		expectedRequest = new Request(1, "SELECT", LocalDateTime.of(2007, 12, 03, 10, 15, 30), new User(),
-				new RequestResult());
+		expectedRequest = new Request(1, "SELECT", RequestTypes.SELECT, LocalDateTime.of(2007, 12, 03, 10, 15, 30),
+				new User(), new RequestResult());
 	}
 
 	static void setUpExpectedRequests() {

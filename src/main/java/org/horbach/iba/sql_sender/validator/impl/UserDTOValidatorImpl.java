@@ -27,16 +27,14 @@ public class UserDTOValidatorImpl implements Validator {
 	private static final Pattern PATTERN_PASSWORD = Pattern.compile(PASSWORD_REGEX);
 
 	private UserService userService;
-	
+
 	public UserDTOValidatorImpl() {
-		
+
 	}
-	
+
 	public UserDTOValidatorImpl(UserService userService) {
 		this.userService = userService;
 	}
-	
-	
 
 	@Override
 	public boolean supports(Class<?> clazz) {

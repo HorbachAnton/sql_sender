@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	private UserDAO userDao;
-	
+
 	public UserDetailsServiceImpl(UserDAO userDao) {
 		this.userDao = userDao;
 	}
@@ -29,17 +29,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole().getId());
 		return buildUserForAuthentication(user, authorities);
 	}
-	
-	private org.springframework.security.core.userdetails.User buildUserForAuthentication(User user,
-			List<GrantedAuthority> authorities) {
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				user.isEnabled(), true, true, true, authorities);
-	}
-	
+
 	private List<GrantedAuthority> buildUserAuthority(int idRole) {
 		Set<GrantedAuthority> setAuths = new HashSet<>();
 		setAuths.add(new SimpleGrantedAuthority(UserRoles.getRoleById(idRole).toString()));
 		return new ArrayList<>(setAuths);
+	}
+
+	private org.springframework.security.core.userdetails.User buildUserForAuthentication(User user,
+			List<GrantedAuthority> authorities) {
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				user.isEnabled(), true, true, true, authorities);
 	}
 
 	public void setUserDao(UserDAO userDao) {

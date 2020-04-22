@@ -12,4 +12,17 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 		<constructor-arg name="userService" ref="userService" />
 	</bean>
 
+	<bean id="requestFacade"
+		class="org.horbach.iba.sql_sender.facade.impl.RequestFacadeImpl">
+		<constructor-arg name="requestConverter"
+			ref="requestConverter" />
+		<constructor-arg name="requestService"
+			ref="requestService" />
+		<constructor-arg name="userService" ref="userService" />
+		<constructor-arg name="requestResultService"
+			ref="requestResultService" />
+		<constructor-arg name="logRecordService"
+			ref="logRecordService" />
+	</bean>
+
 </beans>

@@ -45,6 +45,7 @@
 	<bean id="userService"
 		class="org.horbach.iba.sql_sender.service.impl.UserServiceImpl">
 		<constructor-arg name="userDAO" ref="userDAO" />
+		<constructor-arg name="passwordEncoder" ref="bcrypt" />
 	</bean>
 
 </beans>

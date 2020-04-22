@@ -3,22 +3,33 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 10 ???. 2020 ?., 21:33:17 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="org.horbach.iba.sql_sender.entity.Request" table="request" catalog="sql_sender">
-        <id name="id" type="int">
-            <column name="id" />
-            <generator class="increment" />
-        </id>
-        <property name="text" type="java.lang.String">
-            <column name="text" length="600" not-null="true"/>
-        </property>
-        <property name="executeDate" type="java.lang.String">
-            <column name="executedate" not-null="true"/>
-        </property>
-        <many-to-one name="user" class="org.horbach.iba.sql_sender.entity.User" fetch="join">
-            <column name="User_id" not-null="true"/>
-        </many-to-one>
-        <many-to-one name="result" class="org.horbach.iba.sql_sender.entity.RequestResult" fetch="join">
-            <column name="Request_result_id" not-null="true"/>
-        </many-to-one>
-    </class>
+	<class name="org.horbach.iba.sql_sender.entity.Request"
+		table="request" catalog="sql_sender">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+		<property name="text" type="java.lang.String">
+			<column name="text" length="600" not-null="true" />
+		</property>
+		<property name="requestType">
+			<column name="Request_type_id" />
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">org.horbach.iba.sql_sender.entity.enumeration.RequestTypes</param>
+				<param name="type">12</param>
+				<param name="useNamed">false</param>
+			</type>
+		</property>
+		<property name="executeDate" type="java.time.LocalDateTime">
+			<column name="execute_date" not-null="true" />
+		</property>
+		<many-to-one name="user"
+			class="org.horbach.iba.sql_sender.entity.User" fetch="join">
+			<column name="User_id" not-null="true" />
+		</many-to-one>
+		<many-to-one name="result"
+			class="org.horbach.iba.sql_sender.entity.RequestResult" fetch="join">
+			<column name="Request_result_id" not-null="true" />
+		</many-to-one>
+	</class>
 </hibernate-mapping>

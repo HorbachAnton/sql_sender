@@ -20,7 +20,7 @@ public class UserDAOImpl extends AbstractBasicDAOImpl implements UserDAO {
 	@Override
 	public User getUser(String username) {
 		return (User) getCurrentSession().createSQLQuery(USER_BY_USERNAME_QUERY).addEntity(User.class)
-				.setParameter(USERNAME_PARAMETER_POSITION, username).getSingleResult();
+				.setParameter(USERNAME_PARAMETER_POSITION, username).uniqueResult();
 	}
 	
 	@Override

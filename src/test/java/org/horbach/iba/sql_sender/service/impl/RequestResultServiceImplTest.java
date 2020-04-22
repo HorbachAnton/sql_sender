@@ -40,7 +40,7 @@ class RequestResultServiceImplTest {
 	}
 
 	static void setUpExpectedRequestResult() {
-		expectedRequestResult = new RequestResult(1, "Success");
+		expectedRequestResult = new RequestResult(1, "Success", null);
 	}
 
 	static void setUpExpectedRequestResults() {

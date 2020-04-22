@@ -10,4 +10,7 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 		<constructor-arg name="userService" ref="userService" />
 	</bean>
 
+	<bean id="requestDTOValidator"
+		class="org.horbach.iba.sql_sender.validator.impl.RequestDTOValidatorImpl" />
+
 </beans>

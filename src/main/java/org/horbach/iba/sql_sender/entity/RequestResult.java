@@ -1,20 +1,23 @@
 package org.horbach.iba.sql_sender.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 public class RequestResult {
 
 	private int id;
 	private String message;
+	private List<?> requestedData;
 
 	public RequestResult() {
 
 	}
 
-	public RequestResult(int id, String message) {
+	public RequestResult(int id, String message, List<?> requestedData) {
 		super();
 		this.id = id;
 		this.message = message;
+		this.requestedData = requestedData;
 	}
 
 	public int getId() {
@@ -33,9 +36,17 @@ public class RequestResult {
 		this.message = message;
 	}
 
+	public List<?> getRequestedData() {
+		return requestedData;
+	}
+
+	public void setRequestedData(List<?> requestedData) {
+		this.requestedData = requestedData;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, message);
+		return Objects.hash(id, message, requestedData);
 	}
 
 	@Override
@@ -50,12 +61,13 @@ public class RequestResult {
 			return false;
 		}
 		RequestResult other = (RequestResult) obj;
-		return id == other.id && Objects.equals(message, other.message);
+		return id == other.id && Objects.equals(message, other.message)
+				&& Objects.equals(requestedData, other.requestedData);
 	}
 
 	@Override
 	public String toString() {
-		return "RequestResult [id=" + id + ", message=" + message + "]";
+		return "RequestResult [id=" + id + ", message=" + message + ", requestedData=" + requestedData + "]";
 	}
 
 }

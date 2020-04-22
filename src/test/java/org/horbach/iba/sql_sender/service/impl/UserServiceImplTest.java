@@ -19,12 +19,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
 	@Mock
 	private static UserDAO userDAO;
+	
+	@Mock
+	private static PasswordEncoder passwordEncoder;
 
 	private static User expectedUser;
 
@@ -55,7 +59,7 @@ class UserServiceImplTest {
 	}
 
 	private static void setUpUserServiceImpl() {
-		userServiceimpl = new UserServiceImpl(userDAO);
+		userServiceimpl = new UserServiceImpl(userDAO, passwordEncoder);
 	}
 
 	@Test

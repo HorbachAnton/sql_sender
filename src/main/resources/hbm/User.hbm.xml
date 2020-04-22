@@ -16,7 +16,8 @@
 		<property name="password" type="java.lang.String">
 			<column name="password" length="70" not-null="true" />
 		</property>
-		<property name="isEnabled" type="java.lang.Boolean" access="field">
+		<property name="isEnabled" type="java.lang.Boolean"
+			access="field">
 			<column name="enabled" not-null="true" />
 		</property>
 		<property name="userRole">
@@ -24,6 +25,7 @@
 			<type name="org.hibernate.type.EnumType">
 				<param name="enumClass">org.horbach.iba.sql_sender.entity.enumeration.UserRoles</param>
 				<param name="type">12</param>
+				<param name="useNamed">false</param>
 			</type>
 		</property>
 	</class>

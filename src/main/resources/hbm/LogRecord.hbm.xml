@@ -3,12 +3,15 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.horbach.iba.sql_sender.entity.LogRecord" table="log_record" catalog="sql_sender">
-        <id name="id" type="int">
-            <column name="id" />
-            <generator class="increment" />
-        </id>
-        <one-to-one name="request" class="org.horbach.iba.sql_sender.entity.Request" fetch="join">
-        </one-to-one>
-    </class>
+	<class name="org.horbach.iba.sql_sender.entity.LogRecord"
+		table="log_record" catalog="sql_sender">
+		<id name="id" type="int">
+			<column name="id" />
+			<generator class="increment" />
+		</id>
+		<many-to-one name="request"
+			class="org.horbach.iba.sql_sender.entity.Request" fetch="join">
+			<column name="Request_id" />
+		</many-to-one>
+	</class>
 </hibernate-mapping>
