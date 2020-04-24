@@ -17,8 +17,9 @@
 			access="isAuthenticated()" />
 		<intercept-url pattern="/execute-request"
 			access="isAuthenticated()" />
-			
-		<access-denied-handler error-page="/403/" />
+		<intercept-url pattern="/login" access="permitAll" />
+
+		<access-denied-handler error-page="/403" />
 
 		<form-login login-page="/authorization/"
 			default-target-url="/welcome/"
@@ -28,6 +29,7 @@
 			delete-cookies="JSESSIONID" />
 		<remember-me token-validity-seconds="1209600"
 			remember-me-parameter="remember-me" />
+
 	</http>
 
 	<authentication-manager>
