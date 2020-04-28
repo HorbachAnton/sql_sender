@@ -44,7 +44,9 @@ public class UserDTOValidatorImpl implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		validateEmptyFields(errors);
-		validateUserDTO(target, errors);
+		if (!errors.hasErrors()) {
+			validateUserDTO(target, errors);
+		}
 	}
 
 	private void validateEmptyFields(Errors errors) {

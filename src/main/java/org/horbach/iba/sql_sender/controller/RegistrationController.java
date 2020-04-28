@@ -28,6 +28,11 @@ public class RegistrationController {
 	@Autowired
 	private Validator userDTOValidator;
 
+	@ModelAttribute(USER_DTO_MODEL_ATTRIBUTE_NAME)
+	public UserDTO getUserDTO() {
+		return new UserDTO();
+	}
+
 	@GetMapping(value = GET_REGISTRATION_PAGE_REQUEST)
 	public String getPage(Model model) {
 		model.addAttribute(USER_DTO_MODEL_ATTRIBUTE_NAME, new UserDTO());

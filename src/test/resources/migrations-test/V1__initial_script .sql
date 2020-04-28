@@ -170,7 +170,7 @@ INSERT INTO `sql_sender`.`request_type` (`id`, `title`) VALUES ('6', 'DROP');
 -- -----------------------------------------------------
 -- Filling the table(`sql_sender`.`User`) with test data
 -- -----------------------------------------------------
-INSERT INTO `sql_sender`.`user` (`id`, `username`, `password`, `enabled`, `Role_id`) VALUES ('1', 'admin', '$12$Uk5yP0Ud24Hy0.3gsyXCEeC0ZlpdTVaiC4ohgLRtkdlO9ab.uWcD.', '1', '2');
+INSERT INTO `sql_sender`.`user` (`id`, `username`, `password`, `enabled`, `Role_id`) VALUES ('1', 'admin', '$2a$12$d0HY1JMmeAScJKCgjhVKouywCjNLkWeOMSj6qrOndEzDbTypUGCjq', '1', '2');
 
 -- -----------------------------------------------------
 -- Filling the table(`sql_sender`.`Location`) with test data
