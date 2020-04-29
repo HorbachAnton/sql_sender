@@ -32,7 +32,9 @@ import org.springframework.web.context.WebApplicationContext;
 @TestInstance(value = Lifecycle.PER_CLASS)
 @ContextConfiguration(locations = {
 		"file:src/main/webapp/WEB-INF/context/application-context/application-context.xml" })
-class WelcomeControllerTest {
+class QueryHistoryControllerTest {
+
+	private static final String GET_QUERY_HISTORY_PAGE_REQUEST = "/query_history/";
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -51,21 +53,21 @@ class WelcomeControllerTest {
 
 		assertThat(servletContext, is(notNullValue()));
 		assertThat(servletContext, instanceOf(MockServletContext.class));
-		assertThat(wac.getBean("welcomeController"), is(notNullValue()));
+		assertThat(wac.getBean("queryHistoryController"), is(notNullValue()));
 	}
 
 	@Test
 	@WithMockUser
 	public void testSuccessGetPage() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/welcome/")).andDo(MockMvcResultHandlers.print())
+		this.mockMvc.perform(MockMvcRequestBuilders.get(GET_QUERY_HISTORY_PAGE_REQUEST)).andDo(MockMvcResultHandlers.print())
 				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.view().name("welcome"));
+				.andExpect(MockMvcResultMatchers.view().name("query_history"));
 	}
 
 	@Test
 	@WithAnonymousUser
 	public void testFailedGetPageByAnonymousUser() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/welcome/")).andDo(MockMvcResultHandlers.print())
+		this.mockMvc.perform(MockMvcRequestBuilders.get(GET_QUERY_HISTORY_PAGE_REQUEST)).andDo(MockMvcResultHandlers.print())
 				.andExpect(MockMvcResultMatchers.status().is(302))
 				.andExpect(MockMvcResultMatchers.redirectedUrl("http://localhost/authorization/"));
 	}

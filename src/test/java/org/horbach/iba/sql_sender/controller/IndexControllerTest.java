@@ -15,7 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.test.context.support.WithAnonymousUser;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -32,7 +31,7 @@ import org.springframework.web.context.WebApplicationContext;
 @TestInstance(value = Lifecycle.PER_CLASS)
 @ContextConfiguration(locations = {
 		"file:src/main/webapp/WEB-INF/context/application-context/application-context.xml" })
-class WelcomeControllerTest {
+class IndexControllerTest {
 
 	@Autowired
 	private WebApplicationContext wac;
@@ -51,23 +50,14 @@ class WelcomeControllerTest {
 
 		assertThat(servletContext, is(notNullValue()));
 		assertThat(servletContext, instanceOf(MockServletContext.class));
-		assertThat(wac.getBean("welcomeController"), is(notNullValue()));
-	}
-
-	@Test
-	@WithMockUser
-	public void testSuccessGetPage() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/welcome/")).andDo(MockMvcResultHandlers.print())
-				.andExpect(MockMvcResultMatchers.status().isOk())
-				.andExpect(MockMvcResultMatchers.view().name("welcome"));
+		assertThat(wac.getBean("indexController"), is(notNullValue()));
 	}
 
 	@Test
 	@WithAnonymousUser
-	public void testFailedGetPageByAnonymousUser() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/welcome/")).andDo(MockMvcResultHandlers.print())
-				.andExpect(MockMvcResultMatchers.status().is(302))
-				.andExpect(MockMvcResultMatchers.redirectedUrl("http://localhost/authorization/"));
+	public void testSuccessGetPage() throws Exception {
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/")).andDo(MockMvcResultHandlers.print())
+				.andExpect(MockMvcResultMatchers.status().isOk()).andExpect(MockMvcResultMatchers.view().name("index"));
 	}
 
 }

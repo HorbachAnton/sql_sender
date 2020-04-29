@@ -19,6 +19,11 @@ public class RequestExecutorController {
 	@Autowired
 	private RequestFacade requestFacade;
 
+	@ModelAttribute("requestDTO")
+	public RequestDTO getRequestDTO() {
+		return new RequestDTO();
+	}
+
 	@GetMapping(value = "/request-executor/")
 	public String getRequestExecutorPage() {
 		return "request-executor";

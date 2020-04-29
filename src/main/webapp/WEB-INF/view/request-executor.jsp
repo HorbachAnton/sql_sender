@@ -7,7 +7,7 @@
 
             <html>
               <head>
-                <title>Registration</title>
+                <title>Request Executor</title>
                 <head-tag:addCSS_JS/>
               </head>
 
@@ -22,6 +22,10 @@
                 <spring:message code="header.input.authorization" var="authorization"/>
                 <spring:message code="header.input.registration" var="registration"/>
                 <spring:message code="header.input.logout" var="logout"/>
+                <spring:message code="request_executor.h1.write_query" var="write_query"/>
+                <spring:message code="request_executor.p.describe_admin_executor" var="describe_admin_executor"/>
+                <spring:message code="request_executor.p.describe_user_executor" var="describe_user_executor"/>
+                <spring:message code="request-executor.button.execute" var="execute"/>
                 <spring:message code="footer.p.copyright" var="copyright"/>
 
                 <header>
@@ -82,6 +86,31 @@
                     </div>
                   </nav>
                 </header>
+
+                <div class="container request-container">
+                  <div class="container request-header-container">
+                    <h1 class="text-center">${write_query}</h1>
+                  </div>
+                  <div class="container request-input-container border border-dark rounded">
+                    <div class="container describe-executor-container">
+                      <sec:authorize access="hasAuthority('ADMIN')">
+                        <p class="text-center">${describe_admin_executor}</p>
+                      </sec:authorize>
+                      <sec:authorize access="hasAuthority('USER')">
+                        <p class="text-center">${describe_user_executor}</p>
+                      </sec:authorize>
+                    </div>
+                    <form:form method="POST" action="${contextPath}/execute-request" class="form-group" modelAttribute="requestDTO">
+                      <form:textarea path="text" class="form-control" rows="10" id="comment"/>
+                      <div class="text-center">
+                        <form:errors path="text" CssClass="error"/>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark text-center request-form-button">${execute}</button>
+                      </div>
+                    </form:form>
+                  </div>
+                </div>
 
                 <footer class="page-footer font-small blue">
                   <div class="footer-copyright text-center py-3">

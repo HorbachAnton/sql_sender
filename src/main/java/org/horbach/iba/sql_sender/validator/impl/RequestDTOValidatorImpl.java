@@ -22,7 +22,9 @@ public class RequestDTOValidatorImpl implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		validateEmptyFields(errors);
-		validateRequest(target, errors);
+		if (!errors.hasErrors()) {
+			validateRequest(target, errors);
+		}
 	}
 
 	private void validateEmptyFields(Errors errors) {

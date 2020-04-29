@@ -25,6 +25,10 @@ header form {
 footer {
   background: black;
   color: blanchedalmond;
+  position: fixed;
+  height: 60px;
+  bottom: 0;
+  width: 100%;
 }
 
 .nav-flex-icons {
@@ -71,6 +75,10 @@ footer {
   border: 2px solid white;
 }
 
+.describe-executor-container {
+  margin-top: 10px;
+}
+
 .form_container {
   margin-top: 100px;
 }
@@ -105,4 +113,17 @@ footer {
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #c0392b !important;
+}
+
+.request-container {
+  margin: 60px auto 20px auto;
+}
+
+.request-input-container {
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+.request-form-button {
+  margin-top: 20px;
 }
