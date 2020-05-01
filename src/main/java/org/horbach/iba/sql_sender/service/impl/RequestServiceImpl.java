@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.horbach.iba.sql_sender.dao.RequestDAO;
 import org.horbach.iba.sql_sender.entity.Request;
 import org.horbach.iba.sql_sender.entity.RequestResult;
+import org.horbach.iba.sql_sender.entity.User;
 import org.horbach.iba.sql_sender.entity.enumeration.RequestTypes;
 import org.horbach.iba.sql_sender.service.RequestService;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,11 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public List<Request> getRequests() {
 		return requestDAO.getRequests();
+	}
+
+	@Override
+	public List<Request> getUserRequests(User user) {
+		return requestDAO.getUserRequests(user.getId());
 	}
 
 	@Override

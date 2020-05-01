@@ -26,4 +26,10 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 	<bean id="userConverter"
 		class="org.horbach.iba.sql_sender.converter.impl.UserConverterImpl" />
 
+	<bean id="requestListConverter"
+		class="org.horbach.iba.sql_sender.converter.impl.RequestListConverterImpl">
+		<constructor-arg name="requestConverter"
+			ref="requestConverter" />
+	</bean>
+
 </beans>

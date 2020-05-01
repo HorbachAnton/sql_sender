@@ -2,6 +2,10 @@
   max-width: 1300px;
 }
 
+#queries_history_container {
+  max-width: 1600px;
+}
+
 body,
 html {
   margin: 0;
@@ -111,6 +115,10 @@ footer {
   outline: 0px !important;
 }
 
+.input-head-container {
+  margin: 20px auto 20px auto;
+}
+
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #c0392b !important;
 }
@@ -119,11 +127,44 @@ footer {
   margin: 60px auto 20px auto;
 }
 
+.request-result-container {
+  margin: 20px auto 160px auto;
+}
+
+.forbidden-container {
+  margin-top: 80px;
+}
+
 .request-input-container {
   background-color: lightblue;
   margin-top: 20px;
 }
 
+.queries_history_container {
+  background-color: lightblue;
+  margin-top: 80px;
+}
+
 .request-form-button {
   margin-top: 20px;
+}
+
+.requested-data-container {
+  margin-bottom: 20px;
+}
+
+.header_queries_history_container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.result-column {
+  max-width: 300px;
+}
+
+.welcome-container {
+  margin-top: 50px;
+  margin-bottom: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }

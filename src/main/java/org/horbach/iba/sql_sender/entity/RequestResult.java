@@ -7,13 +7,19 @@ public class RequestResult {
 
 	private int id;
 	private String message;
-	private List<?> requestedData;
+	private List<Object[]> requestedData;
 
 	public RequestResult() {
 
 	}
 
-	public RequestResult(int id, String message, List<?> requestedData) {
+	public RequestResult(int id, String message) {
+		super();
+		this.id = id;
+		this.message = message;
+	}
+
+	public RequestResult(int id, String message, List<Object[]> requestedData) {
 		super();
 		this.id = id;
 		this.message = message;
@@ -36,11 +42,11 @@ public class RequestResult {
 		this.message = message;
 	}
 
-	public List<?> getRequestedData() {
+	public List<Object[]> getRequestedData() {
 		return requestedData;
 	}
 
-	public void setRequestedData(List<?> requestedData) {
+	public void setRequestedData(List<Object[]> requestedData) {
 		this.requestedData = requestedData;
 	}
 

@@ -4,6 +4,7 @@ import org.horbach.iba.sql_sender.dto.RequestDTO;
 import org.horbach.iba.sql_sender.facade.RequestFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RequestExecutorController {
+
+	private static final String REQUEST_EXECUTOR_PAGE_NAME = "request-executor";
 
 	@Autowired
 	private Validator requestDTOValidator;
@@ -26,17 +29,18 @@ public class RequestExecutorController {
 
 	@GetMapping(value = "/request-executor/")
 	public String getRequestExecutorPage() {
-		return "request-executor";
+		return REQUEST_EXECUTOR_PAGE_NAME;
 	}
 
 	@PostMapping(value = "/execute-request")
-	public String executeRequest(@ModelAttribute("requestDTO") RequestDTO requestDTO, BindingResult result) {
+	public String executeRequest(Model model, @ModelAttribute("requestDTO") RequestDTO requestDTO,
+			BindingResult result) {
 		requestDTOValidator.validate(requestDTO, result);
 		if (result.hasErrors()) {
-			return "request-executor";
+			return REQUEST_EXECUTOR_PAGE_NAME;
 		}
-		requestFacade.executeRequest(requestDTO);
-		return "request-executor";
+		model.addAttribute("requestResultDTO", requestFacade.executeRequest(requestDTO));
+		return REQUEST_EXECUTOR_PAGE_NAME;
 	}
 
 }

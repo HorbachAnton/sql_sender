@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.horbach.iba.sql_sender.entity.Request;
 import org.horbach.iba.sql_sender.entity.RequestResult;
+import org.horbach.iba.sql_sender.entity.User;
 
 public interface RequestService {
 
 	Request getRequest(int id);
 
 	List<Request> getRequests();
+
+	List<Request> getUserRequests(User user);
 
 	void saveRequest(Request request);
 

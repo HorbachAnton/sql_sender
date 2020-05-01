@@ -10,7 +10,8 @@ import org.horbach.iba.sql_sender.entity.enumeration.RequestTypes;
 
 public class RequestDAOImpl extends AbstractBasicDAOImpl implements RequestDAO {
 
-	private static final String GET_EVENTS_QUERY = "select * from request";
+	private static final String GET_REQUESTS_QUERY = "select * from request";
+	private static final String GET_USER_REQUESTS_QUERY = "select * from request where user_id = ?";
 
 	public RequestDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -24,7 +25,14 @@ public class RequestDAOImpl extends AbstractBasicDAOImpl implements RequestDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Request> getRequests() {
-		return getCurrentSession().createSQLQuery(GET_EVENTS_QUERY).addEntity(Request.class).list();
+		return getCurrentSession().createSQLQuery(GET_REQUESTS_QUERY).addEntity(Request.class).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Request> getUserRequests(int userID) {
+		return getCurrentSession().createSQLQuery(GET_USER_REQUESTS_QUERY).addEntity(Request.class)
+				.setParameter(1, userID).list();
 	}
 
 	@Override
@@ -64,16 +72,29 @@ public class RequestDAOImpl extends AbstractBasicDAOImpl implements RequestDAO {
 		return requestResult;
 	}
 
+	@SuppressWarnings("unchecked")
 	private RequestResult executeSelectRequest(Request request, String message) {
-		List<?> requestedData = getCurrentSession().createSQLQuery(request.getText()).getResultList();
-		RequestResult requestResult = getExecutedRequestResult(requestedData.size(), message);
-		requestResult.setRequestedData(requestedData);
+		RequestResult requestResult = null;
+		try {
+			List<Object[]> requestedData = getCurrentSession().createNativeQuery(request.getText()).list();
+			requestResult = getExecutedRequestResult(requestedData.size(), message);
+			requestResult.setRequestedData(requestedData);
+		} catch (Exception exception) {
+			requestResult = new RequestResult(0, exception.getMessage());
+		}
+
 		return requestResult;
 	}
 
 	private RequestResult executeUpdatesRequest(Request request, String message) {
-		int numberColumns = getCurrentSession().createSQLQuery(request.getText()).executeUpdate();
-		return getExecutedRequestResult(numberColumns, message);
+		RequestResult requestResult = null;
+		try {
+			int numberColumns = getCurrentSession().createSQLQuery(request.getText()).executeUpdate();
+			requestResult = getExecutedRequestResult(numberColumns, message);
+		} catch (Exception exception) {
+			requestResult = new RequestResult(0, exception.getMessage());
+		}
+		return requestResult;
 	}
 
 	private RequestResult getExecutedRequestResult(int numberColumns, String message) {

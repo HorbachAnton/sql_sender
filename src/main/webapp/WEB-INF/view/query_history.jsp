@@ -20,6 +20,8 @@
                 <spring:message code="header.input.authorization" var="authorization"/>
                 <spring:message code="header.input.registration" var="registration"/>
                 <spring:message code="header.input.logout" var="logout"/>
+                <spring:message code="query_history.h1.requests_history" var="requests_history"/>
+                <spring:message code="query_history.p.history_describe" var="history_describe"/>
                 <spring:message code="footer.p.copyright" var="copyright"/>
 
                 <header>
@@ -81,10 +83,48 @@
                   </nav>
                 </header>
 
-                <footer class="page-footer font-small blue">
-                  <div class="footer-copyright text-center py-3">
-                    <p>${copyright}</p>
+                <div class="container queries_history_container" id="queries_history_container">
+                  <div class="container header_queries_history_container">
+                    <h1 class="text-center">${requests_history}</h1>
                   </div>
-                </footer>
-              </body>
-            </html>
+                  <c:if test="${not empty user_requests}">
+                    <div class="container your_queries_history_container">
+                      <div class="container header_your_queries_history_container">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <p class="text-center">
+                              ${history_describe}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <c:forEach var="request" items="${user_requests}">
+                      <div class="row">
+                        <div class="col-md-3  border border-dark">
+                          <p class="text-center">${request.id}</p>
+                        </div>
+                        <div class="col-md-3  border border-dark">
+                          <p class="text-center">${request.text}</p>
+                        </div>
+                        <div class="col-md-3  border border-dark align-middle">
+                          <p class="text-center">
+                            ${request.user.getUsername()}</p>
+                        </div>
+                        <div class="col-md-3  border border-dark">
+                          <p class="text-center">
+                            ${request.result.getMessage()}</p>
+                        </div>
+                      </div>
+                    </c:forEach>
+                  </div>
+                </c:if>
+              </div>
+
+              <footer class="page-footer font-small blue">
+                <div class="footer-copyright text-center py-3">
+                  <p>${copyright}</p>
+                </div>
+              </footer>
+            </body>
+          </html>

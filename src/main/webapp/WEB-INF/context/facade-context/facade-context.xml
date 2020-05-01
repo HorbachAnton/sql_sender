@@ -23,6 +23,17 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 			ref="requestResultService" />
 		<constructor-arg name="logRecordService"
 			ref="logRecordService" />
+		<constructor-arg name="requestResultConverter"
+			ref="requestResultConverter" />
+	</bean>
+
+	<bean id="queriesHistoryFacade"
+		class="org.horbach.iba.sql_sender.facade.impl.QueriesHistoryFacadeImpl">
+		<constructor-arg name="userService" ref="userService" />
+		<constructor-arg name="requestService"
+			ref="requestService" />
+		<constructor-arg name="requestListConverter"
+			ref="requestListConverter" />
 	</bean>
 
 </beans>

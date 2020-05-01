@@ -11,6 +11,8 @@ public interface RequestDAO {
 
 	List<Request> getRequests();
 
+	List<Request> getUserRequests(int userID);
+
 	void saveRequest(Request request);
 
 	void updateRequest(Request request);

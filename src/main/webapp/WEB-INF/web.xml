@@ -59,7 +59,7 @@
 
 	<error-page>
 		<error-code>403</error-code>
-		<location>/WEB-INF/view/exception-pages/forbidden.jsp</location>
+		<location>/WEB-INF/view/forbidden.jsp</location>
 	</error-page>
 
 </web-app>

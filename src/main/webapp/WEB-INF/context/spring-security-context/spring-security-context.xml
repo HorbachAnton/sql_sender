@@ -20,11 +20,11 @@
 		<intercept-url pattern="/query_history/"
 			access="isAuthenticated()" />
 
-		<access-denied-handler error-page="/403" />
+		<access-denied-handler error-page="/403/" />
 
 		<form-login login-page="/authorization/"
 			default-target-url="/welcome/"
-			authentication-failure-url="/authorization-failed/"
+			authentication-failure-url="/403/"
 			username-parameter="username" password-parameter="password" />
 		<logout logout-url="/logout" logout-success-url="/"
 			delete-cookies="JSESSIONID" />

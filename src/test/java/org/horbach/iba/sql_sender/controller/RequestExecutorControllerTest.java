@@ -118,6 +118,17 @@ class RequestExecutorControllerTest {
 	}
 
 	@Test
+	@WithMockUser(authorities = "USER")
+	public void testFailedExecuteRequestByUsingSystemTables() throws Exception {
+		this.mockMvc
+				.perform(MockMvcRequestBuilders.post(REQUEST_FOR_EXECUTE_SQL_REQUEST)
+						.param("text", "SELECT * FROM log_record").with(SecurityMockMvcRequestPostProcessors.csrf()))
+				.andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
+				.andExpect(model().attributeHasFieldErrorCode(ATTRIBUTE_REQUEST_DTO_NAME, "text",
+						"errors.not_permission_execute_request"));
+	}
+
+	@Test
 	@FlywayTest
 	@WithUserDetails(userDetailsServiceBeanName = USER_DETAILS_SERVICE_BEAN_NAME, value = USER_ROLE)
 	public void testSuccesExecuteSelectRequest() throws Exception {

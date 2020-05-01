@@ -7,7 +7,7 @@
 
             <html>
               <head>
-                <title>Request Executor</title>
+                <title>Authorization</title>
                 <head-tag:addCSS_JS/>
               </head>
 
@@ -22,13 +22,7 @@
                 <spring:message code="header.input.authorization" var="authorization"/>
                 <spring:message code="header.input.registration" var="registration"/>
                 <spring:message code="header.input.logout" var="logout"/>
-                <spring:message code="request_executor.h1.write_query" var="write_query"/>
-                <spring:message code="request_executor.p.describe_admin_executor" var="describe_admin_executor"/>
-                <spring:message code="request_executor.p.describe_user_executor" var="describe_user_executor"/>
-                <spring:message code="request-executor.button.execute" var="execute"/>
-                <spring:message code="request_executor.h1.result_header" var="result_header"/>
-                <spring:message code="request_executor.p.request_id" var="request_id"/>
-                <spring:message code="request_executor.p.request_result_mesage" var="request_result_mesage"/>
+                <spring:message code="forbidden.h1.access_denied" var="access_denied"/>
                 <spring:message code="footer.p.copyright" var="copyright"/>
 
                 <header>
@@ -90,66 +84,9 @@
                   </nav>
                 </header>
 
-                <div class="container request-container">
-                  <div class="container request-header-container">
-                    <h1 class="text-center">${write_query}</h1>
-                  </div>
-                  <div class="container request-input-container border border-dark rounded">
-                    <div class="container describe-executor-container">
-                      <sec:authorize access="hasAuthority('ADMIN')">
-                        <p class="text-center">${describe_admin_executor}</p>
-                      </sec:authorize>
-                      <sec:authorize access="hasAuthority('USER')">
-                        <p class="text-center">${describe_user_executor}</p>
-                      </sec:authorize>
-                    </div>
-                    <form:form method="POST" action="${contextPath}/execute-request" class="form-group" modelAttribute="requestDTO">
-                      <form:textarea path="text" class="form-control" rows="10" id="comment"/>
-                      <div class="text-center">
-                        <form:errors path="text" CssClass="error"/>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-dark text-center request-form-button">${execute}</button>
-                      </div>
-                    </form:form>
-                  </div>
+                <div class="container forbidden-container">
+                  <h1 class="text-center">${access_denied}</h1>
                 </div>
-
-                <c:if test="${not empty requestResultDTO}">
-                  <div class="container request-result-container">
-                    <div class="container request-header-container">
-                      <h1 class="text-center">${result_header}</h1>
-                    </div>
-                    <div class="container request-input-container border border-dark rounded">
-                      <div class="container d-flex flex-row input-head-container">
-                        <div class="container border border-dark border-right  text-center">
-                          <p class="align-middle">${request_id} ${requestResultDTO.id}</p>
-                        </div>
-                        <div class="container border border-dark text-center">
-                          <p class="align-middle">${request_result_mesage} ${requestResultDTO.message}</p>
-                        </div>
-                      </div>
-                      <c:if test="${not empty requestResultDTO.getRequestedData()}">
-                        <div class="container requested-data-container">
-                          <div class="container">
-                            <h2 class="text-center container-fluid">Requested data</h2>
-                          </div>
-                          <c:forEach var="requestResultData" items="${requestResultDTO.getRequestedData()}">
-                            <div class="container d-flex flex-row">
-                              <c:forEach var="element" items="${requestResultData}">
-                                <div class="container text-center  border border-dark rounded">
-                                  <p class="d-inline-block text-truncate result-column">
-                                    ${element}
-                                  </p>
-                                </div>
-                              </c:forEach>
-                            </div>
-                          </c:forEach>
-                        </div>
-                      </c:if>
-                    </div>
-                  </div>
-                </c:if>
 
                 <footer class="page-footer font-small blue">
                   <div class="footer-copyright text-center py-3">

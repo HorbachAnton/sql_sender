@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.security.test.context.support.WithAnonymousUser;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -57,18 +57,18 @@ class QueryHistoryControllerTest {
 	}
 
 	@Test
-	@WithMockUser
+	@WithUserDetails(userDetailsServiceBeanName = "userDetailsService", value = "admin")
 	public void testSuccessGetPage() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get(GET_QUERY_HISTORY_PAGE_REQUEST)).andDo(MockMvcResultHandlers.print())
-				.andExpect(MockMvcResultMatchers.status().isOk())
+		this.mockMvc.perform(MockMvcRequestBuilders.get(GET_QUERY_HISTORY_PAGE_REQUEST))
+				.andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(MockMvcResultMatchers.view().name("query_history"));
 	}
 
 	@Test
 	@WithAnonymousUser
 	public void testFailedGetPageByAnonymousUser() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get(GET_QUERY_HISTORY_PAGE_REQUEST)).andDo(MockMvcResultHandlers.print())
-				.andExpect(MockMvcResultMatchers.status().is(302))
+		this.mockMvc.perform(MockMvcRequestBuilders.get(GET_QUERY_HISTORY_PAGE_REQUEST))
+				.andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().is(302))
 				.andExpect(MockMvcResultMatchers.redirectedUrl("http://localhost/authorization/"));
 	}
 

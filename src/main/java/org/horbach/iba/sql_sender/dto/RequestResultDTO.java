@@ -7,13 +7,13 @@ public class RequestResultDTO {
 
 	private int id;
 	private String message;
-	private List<?> requestedData;
+	private List<String[]> requestedData;
 
 	public RequestResultDTO() {
 
 	}
 
-	public RequestResultDTO(int id, String message, List<?> requestedData) {
+	public RequestResultDTO(int id, String message, List<String[]> requestedData) {
 		super();
 		this.id = id;
 		this.message = message;
@@ -36,11 +36,11 @@ public class RequestResultDTO {
 		this.message = message;
 	}
 
-	public List<?> getRequestedData() {
+	public List<String[]> getRequestedData() {
 		return requestedData;
 	}
 
-	public void setRequestedData(List<?> requestedData) {
+	public void setRequestedData(List<String[]> requestedData) {
 		this.requestedData = requestedData;
 	}
 

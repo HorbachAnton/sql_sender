@@ -22,6 +22,10 @@
                 <spring:message code="header.input.authorization" var="authorization"/>
                 <spring:message code="header.input.registration" var="registration"/>
                 <spring:message code="header.input.logout" var="logout"/>
+                <spring:message code="welcome.h4.executor_sql_requests" var="executor_sql_requests"/>
+                <spring:message code="welcome.h4.queries_history" var="queries_history"/>
+                <spring:message code="welcome.p.executor_describe" var="executor_describe"/>
+                <spring:message code="welcome.p.queries_history_describe" var="queries_history_describe"/>
                 <spring:message code="footer.p.copyright" var="copyright"/>
 
                 <header>
@@ -82,6 +86,33 @@
                     </div>
                   </nav>
                 </header>
+
+                <div class="container welcome-container">
+                  <div class="card-deck mb-3 text-center">
+                    <div class="card mb-4 box-shadow">
+                      <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">${executor_sql_requests}</h4>
+                      </div>
+                      <div class="card-body text-center">
+                        <p>${executor_describe}</p>
+                      </div>
+                      <form action="${contextPath}/request-executor/">
+                        <button type="submit" class="btn btn-lg btn-primary">${executor}</button>
+                      </form>
+                    </div>
+                    <div class="card mb-4 box-shadow">
+                      <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">${queries_history}</h4>
+                      </div>
+                      <div class="card-body">
+                        <p>${queries_history_describe}</p>
+                      </div>
+                      <form action="${contextPath}/query_history/">
+                        <button type="submit" class="btn btn-lg btn-primary">${query_history}</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
 
                 <footer class="page-footer font-small blue">
                   <div class="footer-copyright text-center py-3">
