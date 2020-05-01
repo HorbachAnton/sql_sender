@@ -35,8 +35,10 @@
 		<hamcrest-core>2.2</hamcrest-core>
 		<flyway-spring-test>6.1.0</flyway-spring-test>
 		<commons-lang3>3.10</commons-lang3>
+		<commons-beanutils>1.9.4</commons-beanutils>
 
 		<!-- Plugs properties -->
+		<jetty-maven-plugin>9.4.28.v20200408</jetty-maven-plugin>
 		<maven-clean-plugin>3.1.0</maven-clean-plugin>
 		<maven-resources-plugin>3.0.2</maven-resources-plugin>
 		<maven-compiler-plugin>3.8.0</maven-compiler-plugin>
@@ -185,7 +187,7 @@
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.4</version>
+			<version>${commons-beanutils}</version>
 		</dependency>
 	</dependencies>
 
@@ -193,6 +195,20 @@
 		<finalName>sql_sender</finalName>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${jetty-maven-plugin}</version>
+					<configuration>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<webApp>
+							<contextPath>/sql_sender/</contextPath>
+						</webApp>
+						<httpConnector>
+							<port>8080</port>
+						</httpConnector>
+					</configuration>
+				</plugin>
 				<plugin>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>${maven-clean-plugin}</version>
