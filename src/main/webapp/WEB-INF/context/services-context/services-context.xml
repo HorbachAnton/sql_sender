@@ -48,4 +48,9 @@
 		<constructor-arg name="passwordEncoder" ref="bcrypt" />
 	</bean>
 
+	<bean id="tableService"
+		class="org.horbach.iba.sql_sender.service.impl.TableServiceImpl">
+		<constructor-arg name="tableDAO" ref="tableDAO" />
+	</bean>
+
 </beans>

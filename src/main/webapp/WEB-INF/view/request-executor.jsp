@@ -25,6 +25,7 @@
                 <spring:message code="request_executor.h1.write_query" var="write_query"/>
                 <spring:message code="request_executor.p.describe_admin_executor" var="describe_admin_executor"/>
                 <spring:message code="request_executor.p.describe_user_executor" var="describe_user_executor"/>
+                <spring:message code="request_executor.p.available_tables" var="available_tables"/>
                 <spring:message code="request-executor.button.execute" var="execute"/>
                 <spring:message code="request_executor.h1.result_header" var="result_header"/>
                 <spring:message code="request_executor.p.request_id" var="request_id"/>
@@ -102,6 +103,20 @@
                       <sec:authorize access="hasAuthority('USER')">
                         <p class="text-center">${describe_user_executor}</p>
                       </sec:authorize>
+                      <c:if test="${not empty availableTables}">
+                        <p class="text-center">${available_tables}
+                          <c:forEach var="availableTable" items="${availableTables}" varStatus="i">
+                            <c:choose>
+                              <c:when test="${i.count != availableTables.size()}">
+                                ${availableTable};
+                              </c:when>
+                              <c:otherwise>
+                                ${availableTable}.
+                              </c:otherwise>
+                            </c:choose>
+                          </c:forEach>
+                        </p>
+                      </c:if>
                     </div>
                     <form:form method="POST" action="${contextPath}/execute-request" class="form-group" modelAttribute="requestDTO">
                       <form:textarea path="text" class="form-control" rows="10" id="comment"/>

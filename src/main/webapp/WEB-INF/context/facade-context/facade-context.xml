@@ -36,4 +36,10 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 			ref="requestListConverter" />
 	</bean>
 
+	<bean id="tableFacade"
+		class="org.horbach.iba.sql_sender.facade.impl.TableFacadeImpl">
+		<constructor-arg name="tableService"
+			ref="tableService" />
+	</bean>
+
 </beans>

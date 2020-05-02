@@ -2,6 +2,7 @@ package org.horbach.iba.sql_sender.controller;
 
 import org.horbach.iba.sql_sender.dto.RequestDTO;
 import org.horbach.iba.sql_sender.facade.RequestFacade;
+import org.horbach.iba.sql_sender.facade.TableFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +23,17 @@ public class RequestExecutorController {
 	@Autowired
 	private RequestFacade requestFacade;
 
+	@Autowired
+	private TableFacade tableFacade;
+
 	@ModelAttribute("requestDTO")
 	public RequestDTO getRequestDTO() {
 		return new RequestDTO();
 	}
 
 	@GetMapping(value = "/request-executor/")
-	public String getRequestExecutorPage() {
+	public String getRequestExecutorPage(Model model) {
+		model.addAttribute("availableTables", tableFacade.getAvailableTableNames());
 		return REQUEST_EXECUTOR_PAGE_NAME;
 	}
 

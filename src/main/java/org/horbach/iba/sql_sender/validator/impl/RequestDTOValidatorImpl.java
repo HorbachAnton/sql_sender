@@ -39,7 +39,9 @@ public class RequestDTOValidatorImpl implements Validator {
 		String requestText = requestDTO.getText().trim();
 		String requestCommand = StringUtils.substringBefore(requestText, " ");
 		validateCorrectnessRequestText(requestCommand, errors);
-		validateUserCanExecuteRequest(requestText, requestCommand, errors);
+		if (!errors.hasErrors()) {
+			validateUserCanExecuteRequest(requestText, requestCommand, errors);
+		}
 	}
 
 	private void validateCorrectnessRequestText(String requestCommand, Errors errors) {

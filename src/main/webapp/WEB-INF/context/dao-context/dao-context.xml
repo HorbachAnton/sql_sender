@@ -61,4 +61,11 @@ http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 			ref="sessionFactory" />
 	</bean>
 
+	<bean id="tableDAO"
+		class="org.horbach.iba.sql_sender.dao.impl.TableDAOImpl"
+		parent="basicDAO">
+		<constructor-arg name="sessionFactory"
+			ref="sessionFactory" />
+	</bean>
+
 </beans>
